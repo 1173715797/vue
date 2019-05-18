@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    span {
+        margin-right: 30px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list">
+                <span>姓名：{{item.name}}</span><span>性别：{{item.sex}}</span>
+                <button @click="xiangq(item)">详情</button>
+                <button @click="del(index)">删除</button>
+            </li>
+        </ul>
+        <input type="text" v-model="name">
+        <select v-model="sex">
+            <option :value="item" v-for="(item,index) in sexAll">{{item}}</option>
+        </select>
+        <button @click="btnClick">提交</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            sex: '男',
+            list: [],
+            sexAll: ['男', '女']
+        },
+        methods: {
+            btnClick() {
+                console.log(this.name, this.sex);
+                this.list.push({
+                    name: this.name,
+                    sex: this.sex
+                })
+            },
+            del(index) {
+                this.list.splice(index, 1)
+            },
+            xiangq(item) {
+                console.log('姓名：' + item.name + '性别：' + item.sex)
+            }
+        }
+    })
+</script>
+
+</html>

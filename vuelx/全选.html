@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .check {
+        width: 20px;
+        height: 20px;
+        background: salmon;
+        display: inline-block;
+    }
+    
+    .active {
+        background: seagreen;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <p>请选择</p>
+        <ul>
+            <li v-for="(item,index) in list" :key="index">
+                <span :class="['check',{active:item.flag==true}]" @click="lClick(index)"></span><span>{{item.name}}</span>
+            </li>
+        </ul>
+        <div>
+            <span :class="['check',{active:this.flag==true}]" @click="allClick"></span><span>全选</span>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag: false,
+            list: [{
+                'name': '张三',
+                flag: false
+            }, {
+                'name': '李四',
+                flag: false
+            }, {
+                'name': '王五',
+                flag: false
+            }]
+        },
+        methods: {
+            lClick(index) {
+                this.list[index].flag = !this.list[index].flag;
+                console.log(this.list.every(item => item.flag));
+                this.flag = this.list.every(item => item.flag);
+            },
+            allClick() {
+                this.flag = !this.flag;
+                this.list.forEach(item => item.flag = this.flag)
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{name}}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        // template: '<h2>8888</h2>',
+        data: {
+            "name": "cjy "
+        },
+        beforeCreate() {
+            console.log('beforeCreate');
+            console.log(this.$el, this.name, this.$data);
+        },
+        created() {
+            console.log('create');
+            console.log(this.$el, this.name, this.$data);
+        },
+        beforeMount() {
+            console.log('beforeMount');
+            console.log(this.$el, this.name, this.$data);
+        },
+        mounted() {
+            console.log('mounted');
+            console.log(this.$el, this.name, this.$data);
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate');
+            console.log(this.$el, this.name, this.$data);
+        },
+        updated() {
+            console.log('updated');
+            console.log(this.$el, this.name, this.$data);
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .kuai {
+            width: 200px;
+            height: 200px;
+            background: salmon;
+        }
+        
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="aa" v-cloak>
+        <p>{{green}}</p>
+        <p>{{name}}</p>
+        <button @click="flag=!flag">点击</button>
+        <div class="kuai" v-show="flag">
+
+        </div>
+        <ul>
+            <li v-for="(item,index,key) in list" :key="index">
+                {{item.name}} {{item.age}}
+            </li>
+        </ul>
+        <input type="text" @input v-model="txt">
+        <p>{{txt}}</p>
+        <select name="" id="" @click v-model="set">
+            <option value="1">男</option>
+            <option value="2">女</option>
+        </select>
+        <p>{{set==1 ?'男':'女'}}</p>
+
+        <input type="text" @input v-model="fen">
+        <p>{{fen}}</p>
+        <p v-if="fen>90">优秀</p>
+        <p v-if-else="90>fen>80">良好</p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    const app = new Vue({
+        el: '#aa',
+        data: {
+            green: '1701B',
+            name: '常津瑜',
+            flag: 'flase',
+            txt: '',
+            set: '1',
+            fen: '80',
+            list: [{
+                name: '1111',
+                age: '22'
+            }, {
+                name: '2222',
+                age: '33'
+            }]
+        }
+
+    })
+</script>
+
+</html>

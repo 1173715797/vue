@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .tite {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+        }
+        
+        .aaa {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .active {
+            background: salmon;
+            color: seagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tite">
+            <span :class="['aaa',{active:index==cur}]" v-for="(item,index) in list" :key="index" @click="clicks(index)">{{item.tit}}</span>
+        </div>
+        <ul>
+            <li v-for="(item,index) in list[cur].inner" :key="index">{{item.one}}</li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cur: 0,
+            list: [{
+                "tit": '推荐',
+                "inner": [{
+                    "one": "推荐1"
+                }, {
+                    "one": "推荐2"
+                }, {
+                    "one": "推荐3"
+                }]
+            }, {
+                "tit": '热门',
+                "inner": [{
+                    "one": "热门1"
+                }, {
+                    "one": "热门2"
+                }, {
+                    "one": "热门3"
+                }]
+            }]
+        },
+        methods: {
+            clicks(index) {
+                this.cur = index
+            }
+        }
+    })
+</script>
+
+</html>
